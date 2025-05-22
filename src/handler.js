@@ -17,6 +17,8 @@ const addBooksHandler = async (req, h) => {
             reading
         } = req.payload;
 
+        const newId = nanoid();
+
         // Validasi input
         if (!name) {
             console.log('Validation failed: name is missing');
@@ -44,7 +46,7 @@ const addBooksHandler = async (req, h) => {
         const { data, error } = await supabase
         .from('books')
         .insert([{ 
-            id: nanoid(), 
+            id: newId, 
             name,
             year,
             author,
